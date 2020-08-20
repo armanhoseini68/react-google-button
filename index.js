@@ -13,7 +13,7 @@ const GoogleLogin = ({
 }) => {
   useEffect(() => {
     loadScript(handleGoogleSignInButton);
-  });
+  }, []);
 
   const getFunction = (fn) => {
     if (fn && typeof fn === "function") return fn;
@@ -21,7 +21,14 @@ const GoogleLogin = ({
   };
 
   const handleGoogleSignInButton = (gapi) => {
-    getFunction(onInit)(gapi, gapi.auth2.getAuthInstance().isSignedIn.get());
+    gapi.load("auth2", () => {
+      gapi.auth2.init().then(() => {
+        let authInstance = gapi.auth2.getAuthInstance();
+        let signedIn = authInstance.isSignedIn.get();
+        getFunction(onInit)(gapi, signedIn);
+      });
+    });
+
     gapi.signin2.render(instanceId, {
       scope: scope,
       width: width,
