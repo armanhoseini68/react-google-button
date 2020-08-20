@@ -1,0 +1,39 @@
+@keyframes googleSkelton {
+  0% {
+    background-color: "#fff";
+  }
+  50% {
+    background-color: "#eee";
+  }
+  100% {
+    background-color: "#fff";
+  }
+}
+.worker {
+  animation: googleSkelton ease 0.3s infinite;
+}
+
+.googleBtn > div {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: none;
+}
+
+.googleBtn > div:hover {
+  border-color: #ccc;
+  box-shadow: none;
+}
+
+.googleBtn > div > div {
+  display: flex;
+  justify-content: center;
+}
+
+.googleBtn > div > div > div {
+  float: none;
+}
+
+.googleBtn span {
+  font-size: 16px;
+}
